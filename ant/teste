@@ -1,0 +1,11 @@
+#!/bin/bash
+
+a=$1
+while true
+do
+	read b
+	c=$( $b | tr -s " " | tr -t "=" " " | cut -d " " -f 11)
+	echo " "
+	echo "a $a"
+	echo "c $c"
+done

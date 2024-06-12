@@ -1,0 +1,22 @@
+#!/bin/bash
+
+ig=0
+mg=0
+ag=0
+while true
+do
+	read i a b c
+	mt=$(( ($a+$b+$c)/3 ))
+	if [[ ($a -ge $b) && ($a -ge $c) ]]; then
+		ano=1
+	elif [[ ($b -ge $a) && ($b -ge $c) ]]; then
+		ano=2
+	else ano=3
+	fi
+	if [[ $mt -gt $mg ]]; then
+	ig=$i
+	mg=$mt
+	ag=$ano
+	fi
+done
+echo "aluno $ig ano $ag"

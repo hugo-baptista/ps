@@ -1,0 +1,45 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+int main(int argc, char *argv[]) {
+
+        char *a = argv[1];
+        int n=atoi(a);
+
+        int list[100000];
+        list[65490]=123;
+
+        int limite=100000/n;
+
+        int i, limitei, limites;
+
+        for(i=0; i<n; i++) {
+                if(!fork()) {
+                        limitei=i*limite;
+                        limites=(i+1)*limite;
+                        for(limitei; limitei<limites; limitei++) {
+                                if(list[limitei]==123) {
+                                        exit(i+1);
+                                }
+                        }
+                exit(0);
+                }
+        }
+
+        for(int j=0; j<n; j++) {
+                int status;
+                wait(&status);
+                if(WIFEXITED(status)){
+                        int r = WEXITSTATUS(status);
+                        if(r>0) {
+                                printf("O filho %d encontrou o 123\n", r);
+                                exit(0);
+                        }
+                }
+        }
+        printf("Ninguém encontrou o 123\n");
+        exit(0);
+}

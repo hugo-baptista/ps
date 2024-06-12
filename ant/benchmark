@@ -1,0 +1,8 @@
+#!/bin/bash
+
+while true
+do
+	x=$(ping -c 1 google.com | cut -d " " -f 8,9 | tr -t "=" " " | tr "." " " | cut -d " " -f 2,4 | grep ms)
+	echo "$(date +%Y-%m-%d/%T) $x"
+	sleep 2
+done

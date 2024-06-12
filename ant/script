@@ -1,0 +1,10 @@
+#!/bin/bash
+
+t=$1
+while true
+do
+	read a b c
+	if [[ $b -gt $t ]];then
+		echo $a
+	fi
+done
